@@ -42,7 +42,7 @@ models:
           - unique
           - not_null
 
-  - name: fct_sales
+  - name: fact_sales
 
     columns:
 
