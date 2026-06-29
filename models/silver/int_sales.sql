@@ -37,16 +37,16 @@ select
         - (oi.quantity * p.cost_price)
     ) as profit
 
-from {{ ref('stg_order_items') }} oi
+from {{ ref('stg_order_items') }} as oi
 
-join {{ ref('stg_orders') }} o
+inner join {{ ref('stg_orders') }} as o
     on oi.order_id = o.order_id
 
-join {{ ref('stg_customers') }} c
+inner join {{ ref('stg_customers') }} as c
     on o.customer_id = c.customer_id
 
-join {{ ref('stg_products') }} p
+inner join {{ ref('stg_products') }} as p
     on oi.product_id = p.product_id
 
-join {{ ref('stg_stores') }} s
+inner join {{ ref('stg_stores') }} as s
     on o.store_id = s.store_id

@@ -14,7 +14,7 @@ select
     c.state,
     c.country
 
-from {{ ref('stg_orders') }} o
+from {{ ref('stg_orders') }} as o
 
-inner join {{ ref('stg_customers') }} c
+inner join {{ ref('stg_customers') }} as c
     on o.customer_id = c.customer_id

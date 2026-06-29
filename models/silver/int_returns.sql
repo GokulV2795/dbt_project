@@ -11,7 +11,7 @@ select
     oi.quantity,
     oi.unit_price
 
-from {{ ref('stg_returns') }} r
+from {{ ref('stg_returns') }} as r
 
-join {{ ref('stg_order_items') }} oi
+inner join {{ ref('stg_order_items') }} as oi
     on r.order_item_id = oi.order_item_id
