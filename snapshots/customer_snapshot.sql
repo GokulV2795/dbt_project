@@ -5,12 +5,11 @@
         target_schema='SNAPSHOTS',
         unique_key='customer_id',
         strategy='check',
-        check_cols=['customer_name','email','city','state']
+        check_cols=['customer_name', 'email', 'city', 'state']
     )
 }}
 
 select *
-
-from {{ ref('stg_customers') }}
+from {{ source('retail_raw', 'CUSTOMERS_RAW') }}
 
 {% endsnapshot %}
