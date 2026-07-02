@@ -1,0 +1,69 @@
+version: 2
+
+models:
+
+  - name: dim_customer
+    columns:
+      - name: customer_id
+        tests:
+          - unique:
+              config:
+                severity: error # fails the entire run
+          - not_null:
+              config:
+                severity: warn
+      - name: email
+        tests:
+          - unique
+
+  - name: dim_product
+    columns:
+      - name: product_id
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_store
+    columns:
+      - name: store_id
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_employee
+    columns:
+      - name: employee_id
+        tests:
+          - unique
+          - not_null
+
+  - name: fact_sales
+    columns:
+      - name: order_item_id
+        tests:
+          - unique:
+              config:
+                severity: error
+
+      - name: customer_id
+        tests:
+          - relationships:
+              arguments:
+                to: ref('dim_customer')
+                field: customer_id
+              config:
+                severity: warn
+
+      - name: product_id
+        tests:
+          - relationships:
+              arguments:
+                to: ref('dim_product')
+                field: product_id
+
+      - name: store_id
+        tests:
+          - relationships:
+              arguments:
+                to: ref('dim_store')
+                field: store_id
