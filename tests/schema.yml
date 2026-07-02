@@ -6,11 +6,12 @@ models:
     columns:
       - name: customer_id
         tests:
-          - unique
-             config:
-                 severity: error # fails the entier run
-          - not_null
-                 severity: warn 
+          - unique:
+              config:
+                severity: error # fails the entire run
+          - not_null:
+              config:
+                severity: warn
       - name: email
         tests:
           - unique
@@ -40,8 +41,8 @@ models:
     columns:
       - name: order_item_id
         tests:
-          - unique
-            config:
+          - unique:
+              config:
                 severity: error
 
       - name: customer_id
@@ -50,7 +51,7 @@ models:
               arguments:
                 to: ref('dim_customer')
                 field: customer_id
-            config:
+              config:
                 severity: warn
 
       - name: product_id
