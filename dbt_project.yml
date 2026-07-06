@@ -11,8 +11,6 @@ seed-paths: ["seeds"]
 macro-paths: ["macros"]
 snapshot-paths: ["snapshots"]
 
-target-path: "target"
-
 clean-targets:
   - "target"
   - "dbt_packages"
@@ -21,11 +19,13 @@ models:
   dbt_project:
 
     bronze:
+      +schema: dbt_bronze
       +materialized: view
 
     silver:
+      +schema: dbt_silver
       +materialized: table
 
     gold:
+      +schema: dbt_gold
       +materialized: table
-    
