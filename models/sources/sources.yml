@@ -3,7 +3,7 @@ version: 2
 sources:
   - name: retail_raw
     database: ANALYTICS
-    schema: DBT_GVIJAYAN
+    schema: PUBLIC
 
     tables:
       - name: CUSTOMERS_RAW
